@@ -1,0 +1,11 @@
+{
+  "name": "tracker-forwarder",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "binutils64": "^0.1.2",
+    "dotenv": "^16.0.1",
+    "mqtt": "^4.3.7",
+    "teltonika-parser-fix": "^1.0.1"
+  }
+}
