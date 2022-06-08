@@ -25,7 +25,18 @@ function homeAssistantDiscovery(mqttClient, imei) {
         "source_type": 'gps',
         "object_id": `gps_tracker_${imei}`,
         "unique_id": `gps_tracker_${imei}`
-    }), false)
+    }), true)
+
+    mqttPublish(mqttClient, `${homeAssistantDiscoveryPrefix}/binary_sensor/gps_tracker_${imei}_ignition/config`, JSON.stringify({
+        "state_topic": getJsonAttributesTopic(imei),
+        "availability_topic": serverStatusTopic,
+        "object_id": `gps_tracker_${imei}_ignition`,
+        "unique_id": `gps_tracker_${imei}_ignition`,
+        "value_template": "{{ value_json.Ignition }}",
+        "device_class": "power",
+        "payload_on": "Yes",
+        "payload_off": "No",
+    }), true)
 }
 
 function createServer(mqttClient) {
