@@ -72,6 +72,8 @@ function createServer(mqttClient) {
                     for (const io of record.ioElements) {
                         flatProperties['' + (io.label || io.id)] = io.valueHuman || io.value;
                     }
+                    flatProperties.gps_accuracy = flatProperties.gps_accuracy ?? 10; // it can be null for some reason and HA does not like that
+
                     mqttPublish(mqttClient, getJsonAttributesTopic(imei), JSON.stringify(flatProperties))
 
                     if (record.event_id === 155) { // manual geo zone 1
